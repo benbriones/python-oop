@@ -1,0 +1,19 @@
+# instruments
+
+Tuba
+
+Flute
+guitar
+trombone
+
+# sports
+
+basketball
+
+pickleball
+
+# vaccines
+pneumonia
+
+covid
+
