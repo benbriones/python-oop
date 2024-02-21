@@ -1,28 +1,28 @@
 from random import choice
 
-#TODO: change file to file path
+
 class WordFinder:
     """Word Finder: finds random words from a dictionary."""
 
-    def __init__(self, file):
+    def __init__(self, file_path):
         """initializes and reads files, outputs how many words passed """
-        # self.file = file
-        self.words = []
-        self.readfile(file)
+        self.words = self.read_file(file_path)
         print(f"{len(self.words)} words read")
 
-#TODO: name of class and len(words) = "
     def __repr__(self):
-        return f"<current words are: {self.words}>"
+        return f"<{self.__class__.__name__} words length: {len(self.words)} words>"
 
-#TODO: change to be opened to file_path
-    def readfile(self, to_be_opened):
+    def read_file(self, file_path):
         """method for dunder to output words length"""
-        opened_file = open(to_be_opened)
+        word_list = []
+
+        opened_file = open(file_path)
         for line in opened_file:
-            self.words.append(line[:-1])
-#TODO: use strip method
+            word_list.append(line.strip())
+
         opened_file.close()
+
+        return word_list
 
     def random(self):
         """outputs random word from word list"""
@@ -31,18 +31,10 @@ class WordFinder:
 
 class SpecialWordFinder(WordFinder):
     """Child class of word finder, skips empty spaces and category names"""
-    # def __init__(self, file):
-    #     """filters out empty spaces and category names, outputs random word"""
-    #     super().__init__(file)
-    #     self.words = [word for word in self.words if not word.startswith(
-    #         '#') and not word == '']
 
-    #     print(super().random())
+    def read_file(self, file_path):
+        """returns list of words but filters out category names and empty spaces"""
+        return [word for word in super().read_file(file_path) if not word.startswith('#') and not word == '']
 
-    def readfile(self, file_path):
-        super().readfile(file_path)
-        self.words = [word for word in self.words if not word.startswith('#') and not word == '']
-
-
-    def __repr__(self):
-        return super().__repr__()
+    # def __repr__(self):
+    #     return super().__repr__()
